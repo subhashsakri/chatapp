@@ -1,0 +1,177 @@
+// font-family: 'Baloo 2', cursive;
+// font-family: 'Poppins', sans-serif;
+$light-violet:#CF9FFF;
+$light-grey:#D3D3D3;
+$dark-grey:#392c2c;
+$white:#ffffff;
+$font-heading:'Baloo 2', cursive;
+$font-text:'Poppins', sans-serif;
+$fsize:16px;
+@mixin flexing($fd,$jc,$ai){
+    display:flex;
+    flex-direction: $fd;
+    justify-content: $jc;
+    align-items: $ai;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    ::-webkit-scrollbar{
+        display:none;
+    }
+}
+
+main{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    width:80%;
+    overflow: hidden;
+    header{
+        background-color:$light-violet;
+        color: #000000;
+        padding: 7px 20px;
+        @include flexing(row,space-between,center);
+        border-radius: 20px;
+        div.title{
+            @include flexing(row,flex-start,center);
+            h1{
+                font-family: $font-heading;
+                font-size: 40px;
+                margin-left: 10px;
+            }
+        }
+        button{
+            background-color: transparent;
+            outline:none;
+            border:none;
+            display: none;
+        }
+    }
+    div.container{
+        background-color: $light-grey;
+        padding:20px;
+        @include flexing(row,flex-start,stretch);
+        div.user-window{
+            background-color: $dark-grey;
+            color:$white;
+            width:350px;
+            padding:15px 20px;
+            border-radius: 10px;
+            margin-right:20px;
+           div.user-head{
+           @include flexing(row,space-between,center);
+           margin-bottom: 15px;
+           h4{
+            background-color: $light-grey;
+            color:black;
+            padding:0 8px;
+            border-radius: 50%;
+           }
+           }
+           div.user-list p{
+            font-size:0.9rem;
+            font-weight: 600;
+            letter-spacing:0.5px;
+            margin-bottom: 15px;
+           }
+        }
+        div.chat-window{
+            background-color: $dark-grey;
+            width:100%;
+            border-radius: 10px;
+            div.chats{
+                height: 65vh;
+                padding:20px;
+                overflow-y:auto;
+                div.user-join{
+                    font-size:0.9rem;
+                    color:$dark-grey;
+                    background-color:$white;
+                    border-radius:50px;
+                    width:max-content;
+                    padding:7px 20px;
+                    margin:0 auto;
+                    margin-bottom:15px;
+                }
+                div.message{
+                    color:$dark-grey;
+                    background-color:$white;
+                    padding:5px 15px;
+                    max-width:400px;
+                    margin-bottom:15px;
+                    border-radius:20px;
+                    p{
+                        font-size: $fsize;
+                    }
+                }
+                div.outgoing{
+                    margin-left:auto;
+                   background-color: $light-violet;
+                }
+            }
+            div.user-input{
+                @include  flexing(row,space-between ,stretch);
+                padding:20px;
+                input{
+                    font-size: $fsize;
+                    background-color: $white;
+                    padding:10px 20px;
+                    outline:none;
+                    border:none;
+                    width:100%;
+                    border-radius:20px;
+                }
+                button{
+                    font-size:$fsize;
+                    font-weight: 600;
+                    padding:5px 15px;
+                    border:none;
+                    outline:none;
+                    letter-spacing: 0.5px;
+                    color:black;
+                    background-color:green;
+                   border-radius:20px;
+                   &:hover {background-color: #3e8e41}
+                }
+                
+            }
+        }
+    }
+}
+@media screen and (max-width:900px){
+    main{
+        width:95%;
+        header{
+            button{
+                display:block;
+            }
+        }
+        div.container{
+            position:relative;
+            div.user-window{
+                position:absolute;
+                top:0;
+                left:0;
+                width:100%;
+                border-radius:0 0 10px 10px;
+                height:max-content;
+                z-index:11;
+                box-shadow:0 15px 20px -20px black;
+                padding-bottom:0;
+                display:none;
+            }
+            div.chat-window{
+                div.chats{
+                    div.message{
+                        max-width:300px;
+                    }
+                }
+            }
+        }
+    }
+}
